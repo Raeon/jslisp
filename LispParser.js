@@ -55,7 +55,12 @@ var LispParser = function(str) {
                     this.readString();
 
         if (!token) {
-            throw new Error('Illegal token "%3" at %0:%1: %2'.fmt(line, index, str.charAt(cursor), token));
+            throw new Error('Illegal token "%3" at %0:%1: %2'.fmt(
+                line,
+                index,
+                str.charAt(cursor),
+                token
+            ));
         }
         token.setPosition(pos);
         return token;
