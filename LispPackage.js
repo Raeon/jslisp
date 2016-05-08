@@ -72,12 +72,6 @@ var LispPackage = function(env, name) {
             }
         }
 
-        /* 0: {
-            "type": LispValue type, // Can be -1 as 'any'
-            "optional": false,
-            "remainder": false
-        }*/
-
         // Define result beforehand so we can bind it to fnc
         var result = LispValue.forType(
             macro ? LispValue.MACRO : LispValue.FUNCTION,
