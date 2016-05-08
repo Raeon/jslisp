@@ -118,7 +118,7 @@ var LispSExpression = function(LispValue, children) {
             }
 
             // Single expression
-            if (children.length() == 1 &&
+            if (children.length() === 1 &&
                 children.get(0).getType() !== LispValue.FUNCTION) {
                 return children.get(0).evaluate(scope);
             }
