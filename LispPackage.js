@@ -110,7 +110,10 @@ var LispPackage = function(env, name) {
             for (var i = 0, l = args.length(); i < l; i++) {
                 var arg = args.get(i);
                 if (arg.getType() === LispValue.ERROR) {
-                    arg.addTrace(this.toString() + ' argument validation: ERRORS');
+                    arg.addTrace(
+                        this.toString() +
+                        ' argument validation: ERRORS'
+                    );
                     return arg;
                 }
             }
@@ -119,7 +122,8 @@ var LispPackage = function(env, name) {
             var resultArgs = new List();
             var remainders = new List();
 
-            for (i = 0, l = Math.max(args.length(), argopts.length); i < l; i++) {
+            l = Math.max(args.length(), argopts.length());
+            for (i = 0; i < l; i++) {
                 arg = args.get(i);
                 var argopt = argopts[i];
 

@@ -84,7 +84,8 @@ var LispSExpression = function(LispValue, children) {
             for (i = 0; i < children.length(); i++) {
                 child = children.get(i);
 
-                // Do not evaluate child if we are quoted and it is not an SExpr.
+                // Do not evaluate child if we are quoted
+                // and it is not an SExpr.
                 if (this.isQuoted() &&
                     child.getType() !== LispValue.SEXPRESSION) {
                     continue;
