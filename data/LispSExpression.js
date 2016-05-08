@@ -36,16 +36,6 @@ var LispSExpression = function(LispValue, children) {
             }
         }
 
-        // If we are not quoted:
-        // - Evaluate all children, they deal with quotes themselves
-        // If we are quoted:
-        // - Iterate over all children
-        // - If the current child is an SExpression:
-        //   + Invoke evaluate() on the child anyways! There might be a nested
-        //     child that is unquoted and must be evaluated now.
-        // - If the current child isQuoted(), setQuoted(false) and do not eval
-        // - Unquote self, because we have been evaluated once
-
         // Initialize reused variables
         var children = this.getValue();
         var i = 0, l = children.length(), child;
@@ -86,16 +76,8 @@ var LispSExpression = function(LispValue, children) {
             );
         }
 
-        // TODO: Reconsider when to check if first argument is quoted
-
         // Check if we're dealing with a macro
         var macro = first.getType() === LispValue.MACRO;
-
-        // Differences:
-        // - Do not eval arguments
-        // - Evaluate body twice
-
-        // Check if we're trying to evaluate a macro
 
         // Iterate over all children if we're not a macro:
         if (!macro) {
@@ -185,11 +167,8 @@ var LispSExpression = function(LispValue, children) {
                 res = expr.evaluate(scop);
             }
         } else {
-            console.log('before:', body.toString());
             res = body.evaluate(scop);
-            console.log('during:', res.toString());
             res = res.evaluate(scop);
-            console.log('after:', res.toString());
         }
 
         // Evaluate the function body
