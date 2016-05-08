@@ -10,8 +10,7 @@ var LispScope = function(env, parent) {
     var map = new Mapper();
 
     this.set = function(name, value) {
-        // If it is defined in package, GET MAD!
-        // I DON'T NEED YOUR F***ING LEMONS!
+        // If it is defined in package, return becase we cannot override it
         var pkg = env.getActivePackage();
         if (pkg.exists(name)) {
             return false;
