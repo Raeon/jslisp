@@ -25,15 +25,6 @@ var LispParser = function(str) {
 
         // Return all the tokens
         return tokens;
-        /*
-        // If we only parsed 1 token, just return it
-        if (tokens.length === 1) {
-            return tokens[0];
-        }
-
-        // Otherwise, we return the whole lot
-        var expr = LispValue.forType(LispValue.SEXPRESSION, tokens);
-        return expr;*/
     };
 
     this.readToken = function(quoted) {
@@ -120,11 +111,7 @@ var LispParser = function(str) {
 
         var selfQuoted = match[1] ? match[1].in('\'', '`') : false;
         var selfUnquoted = match[1] ? match[1].charAt(0) === ',' : false;
-        var quoted = (selfQuoted /*|| parentQuoted*/) && !selfUnquoted;
-        // readSymbol neglects parent quote!
-        // Parent does not evaluate symbol if it is quoted itself, so
-        // quoting the symbol over that is just doing it twice, and causes
-        // unintended behaviour.
+        var quoted = selfQuoted && !selfUnquoted;
 
         var splat = match[1] ? (match[1].length > 1) : false;
 
