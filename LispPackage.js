@@ -50,10 +50,10 @@ var LispPackage = function(env, name) {
 
             if (!argopt.remainder) {
 
-                // If this arg is optional, do not increase min/max
+                // If this arg is optional, do not increase min
                 min += argopt.optional ? 0 : 1;
                 if (max !== -1) {
-                    max += argopt.optional ? 0 : 1;
+                    max += 1;
                 }
 
             } else {
@@ -122,7 +122,7 @@ var LispPackage = function(env, name) {
             var resultArgs = new List();
             var remainders = new List();
 
-            l = Math.max(args.length(), argopts.length());
+            l = Math.max(args.length(), argopts.length);
             for (i = 0; i < l; i++) {
                 arg = args.get(i);
                 var argopt = argopts[i];
