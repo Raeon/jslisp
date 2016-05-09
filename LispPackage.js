@@ -263,12 +263,10 @@ var LispPackage = function(env, name) {
 
         // Return false if we found a duplicate
         if (duplicate) {
-            console.log('Duplicate!');
             return false;
         }
 
         // Success! Add to using list
-        console.log(this, 'added using package:', pkg);
         using.append(pkg);
         return true;
     };
